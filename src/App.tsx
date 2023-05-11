@@ -11,6 +11,7 @@ const App = () => {
       <Header 
         newAssignmentInput={newAssignmentInput}
         setNewAssignmentInput={setNewAssignmentInput}
+        createdAssignments={createdAssignments}
         setCreatedAssignments={setCreatedAssignments}
         />
       <Assignments createdAssignments={createdAssignments} />

@@ -21,8 +21,8 @@ const Assignments = ({ createdAssignments }: AssignmentsProps) => {
       </header>
 
       <div className={styles.list}>
-        {createdAssignments.map((item) => (
-          <Assignment name={item} />
+        {createdAssignments.map((item, idx) => (
+          <Assignment name={item} key={idx} />
         ))}
       </div>
     </section>
