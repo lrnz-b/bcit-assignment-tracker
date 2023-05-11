@@ -16,7 +16,7 @@ interface AssignmentProps {
 
 const Assignment = ({ assignment, assignments, setAssignments }: AssignmentProps) => {
   const onComplete = () => {
-    setAssignments (
+    setAssignments(
       assignments.map(item => {
         if (item.id === assignment.id) {
           return {...item, completed: !item.completed}
@@ -25,6 +25,12 @@ const Assignment = ({ assignment, assignments, setAssignments }: AssignmentProps
           return item
         }
     }))
+  }
+
+  const onDelete = () => {
+    setAssignments(
+      assignments.filter(item => item.id !== assignment.id)
+    )
   }
 
   return (
@@ -39,7 +45,7 @@ const Assignment = ({ assignment, assignments, setAssignments }: AssignmentProps
 
       <p className={assignment.completed ? styles.textCompleted : ""}>{assignment.name}</p>
 
-      <button className={styles.deleteButton}>
+      <button className={styles.deleteButton} onClick={onDelete} >
         <TbTrash size={20} />
       </button>
     </div>
