@@ -2,19 +2,35 @@
 import styles from "./header.module.css";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
+interface AssignmentProperties {
+  id: number;
+  name: string;
+  completed: boolean;
+}
+
 interface HeaderProps {
   assignmentInput: string;
   setAssignmentInput: Function;
-  handleCreate: Function;
+  assignments: AssignmentProperties[]
+  setAssignments: Function;
 }
 
-const Header = ({ assignmentInput, setAssignmentInput, handleCreate }: HeaderProps) => {
+const Header = ({ assignmentInput, setAssignmentInput, assignments, setAssignments }: HeaderProps) => {
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAssignmentInput(event.currentTarget.value);
   }
 
   const onCreate = () => {
-    handleCreate(assignmentInput)
+    setAssignments([
+      ...assignments, 
+      {
+        id: assignments.length+1, 
+        name: assignmentInput, 
+        completed: false
+      }
+    ]);
+
+    setAssignmentInput("");
   }
 
   return (

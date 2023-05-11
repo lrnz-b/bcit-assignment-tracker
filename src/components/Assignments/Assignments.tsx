@@ -8,12 +8,14 @@ interface AssignmentProperties {
 }
 
 interface AssignmentsProps {
-  assignments: AssignmentProperties[];
-  handleComplete: Function;
-  completeCount: Function; 
+    assignments: AssignmentProperties[]
+    setAssignments: Function;
 }
 
-const Assignments = ({ assignments, handleComplete, completeCount }: AssignmentsProps) => {
+const Assignments = ({ assignments, setAssignments }: AssignmentsProps) => {
+  const getCompleted = () => {
+    return assignments.filter(value => value.completed).length;
+  }
 
   return (
     <section className={styles.assignments}>
@@ -25,7 +27,7 @@ const Assignments = ({ assignments, handleComplete, completeCount }: Assignments
 
         <div>
           <p className={styles.textPurple}>Completed Assignments</p>
-          <span>{completeCount()} of {assignments.length}</span>
+          <span>{getCompleted()} of {assignments.length}</span>
         </div>
       </header>
 
@@ -33,8 +35,9 @@ const Assignments = ({ assignments, handleComplete, completeCount }: Assignments
         {assignments.map((assignment) => (
           <Assignment 
             assignment={assignment} 
+            assignments={assignments}
+            setAssignments={setAssignments} 
             key={assignment.id} 
-            handleComplete={handleComplete}
             />
         ))}
       </div>

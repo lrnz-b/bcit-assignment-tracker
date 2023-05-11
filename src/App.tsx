@@ -12,46 +12,18 @@ const App = () => {
   const [assignmentInput, setAssignmentInput] = useState<string>("");
   const [assignments, setAssignments] = useState<AssignmentProperties[]>([]);
 
-  const handleCreate = (name: string) => {
-    setAssignments([
-      ...assignments, 
-      {
-        id: assignments.length+1, 
-        name: name, 
-        completed: false
-      }
-    ]);
-
-    setAssignmentInput("");
-  }
-
-  const handleComplete = (id: number) => {
-    setAssignments (
-      assignments.map(assignment => {
-        if (assignment.id === id) {
-          return {...assignment, completed: !assignment.completed}
-        }
-        else {
-          return assignment
-        }
-    }))
-  }
-
-  const getCompleted = () => {
-    return assignments.filter(value => value.completed).length
-  }
-
   return (
     <>
       <Header 
         assignmentInput={assignmentInput}
         setAssignmentInput={setAssignmentInput}
-        handleCreate={handleCreate}
+        assignments={assignments}
+        setAssignments={setAssignments}
         />
       <Assignments 
-        assignments={assignments} 
-        handleComplete={handleComplete} 
-        completeCount={getCompleted} />
+        assignments={assignments}
+        setAssignments={setAssignments} 
+        />
     </>
   );
 }

@@ -10,12 +10,21 @@ interface AssignmentProperties {
 
 interface AssignmentProps {
   assignment: AssignmentProperties;
-  handleComplete: Function;
+  assignments: AssignmentProperties[]
+  setAssignments: Function;
 }
 
-const Assignment = ({ assignment, handleComplete }: AssignmentProps) => {
+const Assignment = ({ assignment, assignments, setAssignments }: AssignmentProps) => {
   const onComplete = () => {
-    handleComplete(assignment.id);
+    setAssignments (
+      assignments.map(item => {
+        if (item.id === assignment.id) {
+          return {...item, completed: !item.completed}
+        }
+        else {
+          return item
+        }
+    }))
   }
 
   return (
@@ -23,14 +32,12 @@ const Assignment = ({ assignment, handleComplete }: AssignmentProps) => {
       <button className={styles.checkContainer} onClick={onComplete}>
         {
           assignment.completed 
-          ? 
-              <BsCheckCircleFill />
-           
-          : <div />
+            ? <BsCheckCircleFill />
+            : <div />
         }
       </button>
 
-      <p className={assignment.completed ? styles.textCompleted : ""} >{assignment.name}</p>
+      <p className={assignment.completed ? styles.textCompleted : ""}>{assignment.name}</p>
 
       <button className={styles.deleteButton}>
         <TbTrash size={20} />
