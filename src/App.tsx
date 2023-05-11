@@ -1,11 +1,19 @@
-import { Header } from "./components/Header";
-import { Assignments } from "./components/Assignments";
+import Header from "./components/Header/Header";
+import Assignments from "./components/Assignments/Assignments";
+import { useState } from "react"
 
-function App() {
+const App = () => {
+  const [newAssignmentInput, setNewAssignmentInput] = useState<string>("");
+  const [createdAssignments, setCreatedAssignments] = useState<string[]>([])
+
   return (
     <>
-      <Header />
-      <Assignments />
+      <Header 
+        newAssignmentInput={newAssignmentInput}
+        setNewAssignmentInput={setNewAssignmentInput}
+        setCreatedAssignments={setCreatedAssignments}
+        />
+      <Assignments createdAssignments={createdAssignments} />
     </>
   );
 }

@@ -1,7 +1,11 @@
-import { Assignment } from "../Assignment";
+import Assignment from "../Assignment/Assignment";
 import styles from "./assignments.module.css";
 
-export function Assignments() {
+interface AssignmentsProps {
+  createdAssignments: string[];
+}
+
+const Assignments = ({ createdAssignments }: AssignmentsProps) => {
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
@@ -17,8 +21,12 @@ export function Assignments() {
       </header>
 
       <div className={styles.list}>
-        <Assignment />
+        {createdAssignments.map((item) => (
+          <Assignment name={item} />
+        ))}
       </div>
     </section>
   );
 }
+
+export default Assignments;
