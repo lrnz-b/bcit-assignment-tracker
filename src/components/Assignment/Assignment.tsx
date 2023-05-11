@@ -30,7 +30,7 @@ const Assignment = ({ assignment, handleComplete }: AssignmentProps) => {
         }
       </button>
 
-      <p>{assignment.name}</p>
+      <p className={assignment.completed ? styles.textCompleted : ""} >{assignment.name}</p>
 
       <button className={styles.deleteButton}>
         <TbTrash size={20} />
