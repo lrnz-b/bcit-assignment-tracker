@@ -1,28 +1,41 @@
 import Assignment from "../Assignment/Assignment";
 import styles from "./assignments.module.css";
 
-interface AssignmentsProps {
-  createdAssignments: string[];
+interface AssignmentProperties {
+  id: number;
+  name: string;
+  completed: boolean;
 }
 
-const Assignments = ({ createdAssignments }: AssignmentsProps) => {
+interface AssignmentsProps {
+  assignments: AssignmentProperties[];
+  handleComplete: Function;
+  completeCount: Function; 
+}
+
+const Assignments = ({ assignments, handleComplete, completeCount }: AssignmentsProps) => {
+
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
         <div>
           <p>Created Assignments</p>
-          <span>1</span>
+          <span>{assignments.length}</span>
         </div>
 
         <div>
           <p className={styles.textPurple}>Completed Assignments</p>
-          <span>1 of 1</span>
+          <span>{completeCount()} of {assignments.length}</span>
         </div>
       </header>
 
       <div className={styles.list}>
-        {createdAssignments.map((item, idx) => (
-          <Assignment name={item} key={idx} />
+        {assignments.map((assignment) => (
+          <Assignment 
+            assignment={assignment} 
+            key={assignment.id} 
+            handleComplete={handleComplete}
+            />
         ))}
       </div>
     </section>

@@ -1,26 +1,20 @@
+
 import styles from "./header.module.css";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 interface HeaderProps {
-  newAssignmentInput: string;
-  setNewAssignmentInput: Function;
-  createdAssignments: string[];
-  setCreatedAssignments: Function;
+  assignmentInput: string;
+  setAssignmentInput: Function;
+  handleCreate: Function;
 }
 
-const Header = ({ 
-  newAssignmentInput, 
-  setNewAssignmentInput,
-  createdAssignments,
-  setCreatedAssignments }: HeaderProps) => {
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewAssignmentInput(event.currentTarget.value);
+const Header = ({ assignmentInput, setAssignmentInput, handleCreate }: HeaderProps) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAssignmentInput(event.currentTarget.value);
   }
 
-  const handleClick = () => {
-    setCreatedAssignments([...createdAssignments, newAssignmentInput]);
-    setNewAssignmentInput("");
+  const onCreate = () => {
+    handleCreate(assignmentInput)
   }
 
   return (
@@ -28,8 +22,8 @@ const Header = ({
       {/* This is simply to show you how to use helper functions */}
       <h1>Assignment Tracker</h1>
       <form className={styles.newAssignmentForm}>
-        <input placeholder="Add a new assignment" type="text" onChange={handleChange} value={newAssignmentInput}/>
-        <button disabled={!newAssignmentInput} onClick={handleClick}>
+        <input placeholder="Add a new assignment" type="text" onChange={onChange} value={assignmentInput}/>
+        <button disabled={!assignmentInput} onClick={onCreate}>
           Create <AiOutlinePlusCircle size={20} />
         </button>
       </form>

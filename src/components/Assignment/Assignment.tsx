@@ -1,18 +1,36 @@
 import styles from "./assignment.module.css";
 import { TbTrash } from "react-icons/tb";
+import { BsCheckCircleFill } from "react-icons/bs"
 
-interface AssignmentProps {
+interface AssignmentProperties {
+  id: number;
   name: string;
+  completed: boolean;
 }
 
-const Assignment = ({ name }: AssignmentProps) => {
+interface AssignmentProps {
+  assignment: AssignmentProperties;
+  handleComplete: Function;
+}
+
+const Assignment = ({ assignment, handleComplete }: AssignmentProps) => {
+  const onComplete = () => {
+    handleComplete(assignment.id);
+  }
+
   return (
     <div className={styles.assignment}>
-      <button className={styles.checkContainer}>
-        <div />
+      <button className={styles.checkContainer} onClick={onComplete}>
+        {
+          assignment.completed 
+          ? 
+              <BsCheckCircleFill />
+           
+          : <div />
+        }
       </button>
 
-      <p>{name}</p>
+      <p>{assignment.name}</p>
 
       <button className={styles.deleteButton}>
         <TbTrash size={20} />
