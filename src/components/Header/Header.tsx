@@ -24,7 +24,7 @@ const Header = ({ assignmentInput, setAssignmentInput, assignments, setAssignmen
     setAssignments([
       ...assignments, 
       {
-        id: assignments.length+1, 
+        id: Date.now(), 
         name: assignmentInput, 
         completed: false
       }
