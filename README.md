@@ -10,5 +10,8 @@ Implemented functionality:
 - Adding/completing assignments updates the list counters
 - Clicking trash icon deletes assignment
 
-## (Possible issue): Failed to fetch dynamically imported module
-Solution: delete the ```node_modules``` directory and re-install it using ```npm install```
+## How to run
+1. ```git clone https://github.com/lrnz-b/bcit-assignment-tracker.git```
+2. ```cd bcit-assignment-tracker```
+3. ```npm install```
+4. ```npm run dev```
