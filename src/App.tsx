@@ -1,6 +1,6 @@
-import Header from "./components/Header/Header";
-import Assignments from "./components/Assignments/Assignments";
-import { useState } from "react"
+import Header from './components/Header/Header'
+import Assignments from './components/Assignments/Assignments'
+import { useState } from 'react'
 
 interface AssignmentProperties {
   id: number;

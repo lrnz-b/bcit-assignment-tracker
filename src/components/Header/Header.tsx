@@ -1,6 +1,8 @@
-
-import styles from "./header.module.css";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import Calendar from '../../components/Calendar/Calendar'
+import styles from './header.module.css'
+import { useState } from 'react'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
+import { IoCalendar } from 'react-icons/io5'
 
 interface AssignmentProperties {
   id: number;
@@ -16,6 +18,8 @@ interface HeaderProps {
 }
 
 const Header = ({ assignmentInput, setAssignmentInput, assignments, setAssignments }: HeaderProps) => {
+  const [showCalendar, toggleCalendar] = useState(false);
+
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAssignmentInput(event.currentTarget.value);
   }
@@ -33,13 +37,24 @@ const Header = ({ assignmentInput, setAssignmentInput, assignments, setAssignmen
     setAssignmentInput("");
   }
 
+  const calendarHandler = (event: any) => {
+    event.preventDefault();
+    toggleCalendar(!showCalendar);
+  }
+
   return (
     <header className={styles.header}>
       {/* This is simply to show you how to use helper functions */}
       <h1>Assignment Tracker</h1>
       <form className={styles.newAssignmentForm}>
         <input placeholder="Add a new assignment" type="text" onChange={onChange} value={assignmentInput}/>
-        <button disabled={!assignmentInput} onClick={onCreate}>
+        <button className={styles.icon} onClick={calendarHandler}>
+          <IoCalendar size={30} />
+        </button>
+        <div className={showCalendar ? styles.table : styles.hidden}>
+          <Calendar />
+        </div>
+        <button className={styles.create} disabled={!assignmentInput} onClick={onCreate}>
           Create <AiOutlinePlusCircle size={20} />
         </button>
       </form>

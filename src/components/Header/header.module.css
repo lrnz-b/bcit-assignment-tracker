@@ -33,7 +33,31 @@
   color: #808080;
 }
 
-.newAssignmentForm button {
+.icon {
+  background: transparent;
+  border: 0;
+  color: #8284FA;
+  text-align: right;
+  margin-right: 16px;
+  position: absolute;
+  top: 20%;
+  left: 77%;
+}
+
+.table {
+  position: absolute;
+  top: 100%;
+  left: 45%;
+}
+
+.hidden {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 45%;
+}
+
+.create {
   height: 100%;
   padding: 0 16px;
   background: #8284fa;
@@ -47,7 +71,7 @@
   font-size: 14px;
 }
 
-.newAssignmentForm button:disabled {
+.create:disabled {
   background: #CACACA;
   color: #A9A9A9;
   cursor: default;

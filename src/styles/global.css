@@ -14,3 +14,7 @@ body {
 button {
   cursor: pointer;
 }
+
+.rdp {
+  margin: 0;
+}
