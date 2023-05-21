@@ -6,11 +6,13 @@ interface AssignmentProperties {
   id: number;
   name: string;
   completed: boolean;
+  deadline: Date;
 }
 
 const App = () => {
   const [assignmentInput, setAssignmentInput] = useState<string>("");
   const [assignments, setAssignments] = useState<AssignmentProperties[]>([]);
+  const [deadline, setDeadline] = useState<Date>(new Date());
 
   return (
     <>
@@ -19,10 +21,12 @@ const App = () => {
         setAssignmentInput={setAssignmentInput}
         assignments={assignments}
         setAssignments={setAssignments}
+        deadline={deadline}
+        setDeadline={setDeadline}
         />
       <Assignments 
         assignments={assignments}
-        setAssignments={setAssignments} 
+        setAssignments={setAssignments}
         />
     </>
   );

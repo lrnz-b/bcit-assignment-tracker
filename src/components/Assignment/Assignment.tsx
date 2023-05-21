@@ -1,11 +1,14 @@
-import styles from "./assignment.module.css";
-import { TbTrash } from "react-icons/tb";
-import { BsCheckCircleFill } from "react-icons/bs"
+import styles from './assignment.module.css';
+import { TbTrash } from 'react-icons/tb';
+import { BsCheckCircleFill } from 'react-icons/bs';
+import { getDayCount } from '../../helpers/stringHelpers';
+
 
 interface AssignmentProperties {
   id: number;
   name: string;
   completed: boolean;
+  deadline: Date;
 }
 
 interface AssignmentProps {
@@ -14,7 +17,7 @@ interface AssignmentProps {
   setAssignments: Function;
 }
 
-const Assignment = ({ assignment, assignments, setAssignments }: AssignmentProps) => {
+const Assignment = ({ assignment, assignments, setAssignments}: AssignmentProps) => {
   const onComplete = () => {
     setAssignments(
       assignments.map(item => {
@@ -44,7 +47,7 @@ const Assignment = ({ assignment, assignments, setAssignments }: AssignmentProps
       </button>
 
       <p className={assignment.completed ? styles.textCompleted : ""}>{assignment.name}</p>
-
+      <p>{getDayCount(assignment.deadline) - getDayCount(new Date())} days left</p>
       <button className={styles.deleteButton} onClick={onDelete} >
         <TbTrash size={20} />
       </button>

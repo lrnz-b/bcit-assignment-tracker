@@ -1,13 +1,28 @@
 import { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
-import '../../../node_modules/react-day-picker/dist/style.css'
-import style from './calendar.module.css'
+import '../../../node_modules/react-day-picker/dist/style.css';
+import style from './calendar.module.css';
 
-const Calendar = () => {
+interface CalendarProps {
+  setDeadline: Function;
+}
+
+const Calendar = ({ setDeadline}: CalendarProps) => {
   const [selected, setSelected] = useState<Date>();
 
   return (
     <DayPicker
+    mode="single"
+      selected={selected}
+      onSelect={setSelected}
+      disabled={{before: new Date()}}
+      onDayClick={day => {
+        setDeadline(day);
+      }}
+      modifiersClassNames={{
+        selected: style.selected,
+        today: style.today
+      }}
       styles={{
         month: {
           background: 'white',
@@ -16,13 +31,6 @@ const Calendar = () => {
           borderRadius: '10px'
         }
       }}
-      modifiersClassNames={{
-        selected: style.selected,
-        today: style.today
-      }}
-      mode="single"
-      selected={selected}
-      onSelect={setSelected}
     />
   );
 }

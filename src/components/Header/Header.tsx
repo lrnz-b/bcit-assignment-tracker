@@ -8,6 +8,7 @@ interface AssignmentProperties {
   id: number;
   name: string;
   completed: boolean;
+  deadline: Date;
 }
 
 interface HeaderProps {
@@ -15,9 +16,18 @@ interface HeaderProps {
   setAssignmentInput: Function;
   assignments: AssignmentProperties[]
   setAssignments: Function;
+  deadline: Date;
+  setDeadline: Function;
 }
 
-const Header = ({ assignmentInput, setAssignmentInput, assignments, setAssignments }: HeaderProps) => {
+const Header = ({ 
+    assignmentInput, 
+    setAssignmentInput, 
+    assignments, 
+    setAssignments,
+    deadline,
+    setDeadline }: HeaderProps) => {
+
   const [showCalendar, toggleCalendar] = useState(false);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +40,8 @@ const Header = ({ assignmentInput, setAssignmentInput, assignments, setAssignmen
       {
         id: Date.now(), 
         name: assignmentInput, 
-        completed: false
+        completed: false,
+        deadline: deadline
       }
     ]);
 
@@ -52,7 +63,7 @@ const Header = ({ assignmentInput, setAssignmentInput, assignments, setAssignmen
           <IoCalendar size={30} />
         </button>
         <div className={showCalendar ? styles.table : styles.hidden}>
-          <Calendar />
+          <Calendar setDeadline={setDeadline} />
         </div>
         <button className={styles.create} disabled={!assignmentInput} onClick={onCreate}>
           Create <AiOutlinePlusCircle size={20} />
