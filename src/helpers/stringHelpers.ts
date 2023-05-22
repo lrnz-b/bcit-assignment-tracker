@@ -2,12 +2,9 @@ const uppercase = (text: string) => {
   return text.toUpperCase();
 }
 
-const getDayCount = (date:Date|undefined) => {
-  if(date == undefined) { 
-    return 0;
-  }
-    return parseInt(date.toLocaleString('default', {day: 'numeric'}));
-  
+const msToDays = (ms: number) => {
+  const msInDay = 86400000;
+  return Math.round(ms/msInDay);
 }
 
-export { uppercase, getDayCount };
+export { uppercase, msToDays };
