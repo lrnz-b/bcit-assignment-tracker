@@ -8,7 +8,7 @@ interface AssignmentProperties {
   id: number;
   name: string;
   completed: boolean;
-  deadline: Date;
+  deadline: Date|undefined;
 }
 
 interface HeaderProps {
@@ -16,7 +16,7 @@ interface HeaderProps {
   setAssignmentInput: Function;
   assignments: AssignmentProperties[]
   setAssignments: Function;
-  deadline: Date;
+  deadline: Date|undefined;
   setDeadline: Function;
 }
 
@@ -65,7 +65,10 @@ const Header = ({
         <div className={showCalendar ? styles.table : styles.hidden}>
           <Calendar setDeadline={setDeadline} />
         </div>
-        <button className={styles.create} disabled={!assignmentInput} onClick={onCreate}>
+        <button 
+          className={styles.create} 
+          onClick={onCreate}
+          disabled={!(assignmentInput&&deadline)}>
           Create <AiOutlinePlusCircle size={20} />
         </button>
       </form>
