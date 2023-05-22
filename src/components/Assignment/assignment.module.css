@@ -6,7 +6,6 @@
   border-radius: 8px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
 }
 
@@ -15,11 +14,6 @@
   line-height: 19px;
   color: #f2f2f2;
   margin-right: auto;
-}
-
-p.textCompleted {
-  color: #808080;
-  text-decoration: line-through;
 }
 
 .checkContainer {
@@ -42,8 +36,43 @@ p.textCompleted {
   color: #5e60ce;
 }
 
+.info {
+  display: flex;
+  gap: 12px;
+}
+
+p.textCompleted {
+  color: #808080;
+  text-decoration: line-through;
+  align-self: center;
+}
+
+p.name {
+  align-self: center;
+}
+
+p.tomorrow {
+  border: 1px solid #4B4B4B;
+  font-weight: bolder;
+  border-radius: 30px;
+  padding: 7px 10px 7px 10px;
+  background: #F71033;
+}
+
+p.deadline {
+  border: 1px solid #4B4B4B;
+  font-weight: bolder;
+  border-radius: 30px;
+  padding: 7px 10px 7px 10px;
+  background: #4B4B4B;
+}
+
 .deleteButton {
   background: none;
   border: none;
   color: #808080;
+}
+
+.delete {
+  margin-left: auto;
 }

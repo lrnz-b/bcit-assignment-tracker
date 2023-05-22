@@ -5,9 +5,10 @@ import style from './calendar.module.css';
 
 interface CalendarProps {
   setDeadline: Function;
+  toggleCalendar: Function;
 }
 
-const Calendar = ({ setDeadline}: CalendarProps) => {
+const Calendar = ({ setDeadline, toggleCalendar }: CalendarProps) => {
   const [selected, setSelected] = useState<Date>();
 
   return (
@@ -18,10 +19,10 @@ const Calendar = ({ setDeadline}: CalendarProps) => {
       disabled={{before: new Date()}}
       onDayClick={day => {
         setDeadline(day);
+        toggleCalendar();
       }}
       modifiersClassNames={{
-        selected: style.selected,
-        today: style.today
+        selected: style.selected
       }}
       styles={{
         month: {

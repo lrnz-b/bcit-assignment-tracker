@@ -36,6 +36,10 @@ const Assignment = ({ assignment, assignments, setAssignments}: AssignmentProps)
     )
   }
 
+  const daysLeft = () => {
+    return getDayCount(assignment.deadline) - getDayCount(new Date());
+  }
+
   return (
     <div className={styles.assignment}>
       <button className={styles.checkContainer} onClick={onComplete}>
@@ -45,12 +49,19 @@ const Assignment = ({ assignment, assignments, setAssignments}: AssignmentProps)
             : <div />
         }
       </button>
-
-      <p className={assignment.completed ? styles.textCompleted : ""}>{assignment.name}</p>
-      <p>{getDayCount(assignment.deadline) - getDayCount(new Date())} days left</p>
-      <button className={styles.deleteButton} onClick={onDelete} >
-        <TbTrash size={20} />
-      </button>
+      <div className={styles.info}>
+        <p className={assignment.completed ? styles.textCompleted : styles.name}>
+          {assignment.name}
+        </p>
+        <p className={daysLeft() === 1 ? styles.tomorrow : styles.deadline}>
+          Due: {daysLeft() === 1 ? "tomorrow" : (daysLeft() + " days")}
+        </p>
+      </div>
+      <div className={styles.delete}>
+        <button className={styles.deleteButton} onClick={onDelete} >
+          <TbTrash size={20} />
+        </button>
+      </div>
     </div>
   );
 }

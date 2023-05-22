@@ -5,7 +5,7 @@ interface AssignmentProperties {
   id: number;
   name: string;
   completed: boolean;
-  deadline: Date|undefined;
+  deadline: Date;
 }
 
 interface AssignmentsProps {

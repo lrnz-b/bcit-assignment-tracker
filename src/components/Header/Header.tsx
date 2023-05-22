@@ -8,7 +8,7 @@ interface AssignmentProperties {
   id: number;
   name: string;
   completed: boolean;
-  deadline: Date|undefined;
+  deadline: Date;
 }
 
 interface HeaderProps {
@@ -63,7 +63,7 @@ const Header = ({
           <IoCalendar size={30} />
         </button>
         <div className={showCalendar ? styles.table : styles.hidden}>
-          <Calendar setDeadline={setDeadline} />
+          <Calendar setDeadline={setDeadline} toggleCalendar={toggleCalendar}/>
         </div>
         <button 
           className={styles.create} 
