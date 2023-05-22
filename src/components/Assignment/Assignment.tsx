@@ -1,7 +1,7 @@
 import styles from './assignment.module.css';
 import { TbTrash } from 'react-icons/tb';
 import { BsCheckCircleFill } from 'react-icons/bs';
-import { msToDays } from '../../helpers/stringHelpers';
+import { calcDaysLeft } from '../../helpers/stringHelpers';
 
 
 interface AssignmentProperties {
@@ -37,7 +37,7 @@ const Assignment = ({ assignment, assignments, setAssignments}: AssignmentProps)
   }
 
   const daysLeft = () => {
-    return msToDays(assignment.deadline.getTime() - new Date().getTime());
+    return calcDaysLeft(assignment.deadline);
   }
 
   return (
