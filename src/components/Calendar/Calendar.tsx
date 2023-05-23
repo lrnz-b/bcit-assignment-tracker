@@ -1,26 +1,22 @@
-import { useState } from 'react';
+import { useAssignmentStore } from '../../stores/assignment';
 import { DayPicker } from 'react-day-picker';
 import '../../../node_modules/react-day-picker/dist/style.css';
 import style from './calendar.module.css';
 
-interface CalendarProps {
-  setDeadline: Function;
-  toggleCalendar: Function;
-}
+const Calendar = () => {
+  const { deadline, setDeadline, toggleCalendar } = useAssignmentStore();
 
-const Calendar = ({ setDeadline, toggleCalendar }: CalendarProps) => {
-  const [selected, setSelected] = useState<Date>();
+  const handleDaySelect = (day: Date | undefined) => {
+    setDeadline(day);
+  }
 
   return (
     <DayPicker
     mode="single"
-      selected={selected}
-      onSelect={setSelected}
+      selected={deadline}
+      onSelect={handleDaySelect}
       disabled={{before: new Date()}}
-      onDayClick={day => {
-        setDeadline(day);
-        toggleCalendar();
-      }}
+      onDayClick={() => toggleCalendar()}
       modifiersClassNames={{
         selected: style.selected
       }}

@@ -1,39 +1,28 @@
+import { useAssignmentStore } from '../../stores/assignment';
 import styles from './assignment.module.css';
 import { TbTrash } from 'react-icons/tb';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { calcDaysLeft } from '../../helpers/stringHelpers';
 
-
-interface AssignmentProperties {
-  id: number;
-  name: string;
-  completed: boolean;
-  deadline: Date;
-}
-
 interface AssignmentProps {
-  assignment: AssignmentProperties;
-  assignments: AssignmentProperties[]
-  setAssignments: Function;
+  id: number
 }
 
-const Assignment = ({ assignment, assignments, setAssignments}: AssignmentProps) => {
+const Assignment = ({ id }: AssignmentProps) => {
+  const { 
+    assignments, 
+    completeAssignment, 
+    removeAssignment 
+  } = useAssignmentStore();
+
+  const assignment = assignments.filter((assignment) => assignment.id === id)[0];
+
   const onComplete = () => {
-    setAssignments(
-      assignments.map(item => {
-        if (item.id === assignment.id) {
-          return {...item, completed: !item.completed}
-        }
-        else {
-          return item
-        }
-    }))
+    completeAssignment(assignment.id);
   }
 
   const onDelete = () => {
-    setAssignments(
-      assignments.filter(item => item.id !== assignment.id)
-    )
+    removeAssignment(assignment.id);
   }
 
   const daysLeft = () => {

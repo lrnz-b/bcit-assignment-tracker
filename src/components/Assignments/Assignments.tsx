@@ -1,19 +1,10 @@
-import Assignment from "../Assignment/Assignment";
+import { useAssignmentStore } from "../../stores/assignment";
+import Assignment from "../../components/Assignment/Assignment.tsx";
 import styles from "./assignments.module.css";
 
-interface AssignmentProperties {
-  id: number;
-  name: string;
-  completed: boolean;
-  deadline: Date;
-}
+const Assignments = () => {
+  const { assignments } = useAssignmentStore();
 
-interface AssignmentsProps {
-    assignments: AssignmentProperties[]
-    setAssignments: Function;
-}
-
-const Assignments = ({ assignments, setAssignments }: AssignmentsProps) => {
   const getCompleted = () => {
     return assignments.filter(value => value.completed).length;
   }
@@ -34,12 +25,7 @@ const Assignments = ({ assignments, setAssignments }: AssignmentsProps) => {
 
       <div className={styles.list}>
         {assignments.map((assignment) => (
-          <Assignment 
-            assignment={assignment} 
-            assignments={assignments}
-            setAssignments={setAssignments} 
-            key={assignment.id} 
-            />
+          <Assignment id={assignment.id} key={assignment.id} />
         ))}
       </div>
     </section>
